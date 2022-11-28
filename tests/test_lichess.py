@@ -71,7 +71,7 @@ def test_played_for_white_side():
         'black': {'user': {'name': 'enemy_username'}},
     }
     username = 'player_username'
-    assert played_for(players, 'white', username) == 'white'
+    assert played_for(players, username) == 'white'
 
 
 def test_played_for_black_side():
@@ -80,7 +80,7 @@ def test_played_for_black_side():
         'black': {'user': {'name': 'player_username'}},
     }
     username = 'player_username'
-    assert played_for(players, 'black', username) == 'black'
+    assert played_for(players, username) == 'black'
 
 
 def test_not_played_for_white_side():
@@ -89,7 +89,7 @@ def test_not_played_for_white_side():
         'black': {'user': {'name': 'player_username'}},
     }
     username = 'player_username'
-    assert played_for(players, 'white', username) == 'black'
+    assert played_for(players, username) != 'white'
 
 
 def test_not_played_for_black_side():
@@ -98,4 +98,4 @@ def test_not_played_for_black_side():
         'black': {'user': {'name': 'enemy_username'}},
     }
     username = 'player_username'
-    assert played_for(players, 'black', username) == 'white'
+    assert played_for(players, username) != 'black'
