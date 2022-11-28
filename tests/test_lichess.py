@@ -157,4 +157,4 @@ def test_group_lost_games_by_opening(get_example_games):
         "Queen's Pawn Game": 2,
         "Zukertort Opening: Black Mustang Defense": 1
     }
-    assert group_lost_games_by_opening(get_example_games) == lost_games
+    assert group_lost_games_by_opening(get_example_games, 'player') == lost_games
