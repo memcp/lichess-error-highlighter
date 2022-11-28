@@ -54,5 +54,3 @@ def group_lost_games_by_opening(games, username, short=True):
 
     return openings_to_loses
 
-
- 
