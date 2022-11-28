@@ -4,6 +4,8 @@ from services.lichess import (
     get_username_of,
     is_lose,
     played_for,
+    get_short_opening_name,
+    group_lost_games_by_opening,
 )
 
 
@@ -49,6 +51,48 @@ def game_example_data():
       "variant": "standard",
       "winner": "white"
    }
+
+
+@pytest.fixture()
+def get_example_games():
+    return [
+        {
+            'id': 'wvV0xviw',
+            'players': {
+                'white': {'user': {'name': 'player'}},
+                'black': {'user': {'name': 'enemy'}},
+            },
+            'winner': 'black',
+            'opening': {'name': "Queen's Pawn Game: Anti-Torre"},
+        },
+        {
+            'id': 'YcY8XFMM',
+            'players': {
+                'white': {'user': {'name': 'enemy'}},
+                'black': {'user': {'name': 'player'}},
+            },
+            'winner': 'white',
+            'opening': {'name': "Queen's Pawn Game: Accelerated London System"},
+        },
+        {
+            'id': 'DcD9XaMM',
+            'players': {
+                'white': {'user': {'name': 'player'}},
+                'black': {'user': {'name': 'enemy'}},
+            },
+            'winner': 'black',
+            'opening': {'name': "Zukertort Opening: Black Mustang Defense"},
+        },
+        {
+            'id': '8Z2AcS1F',
+            'players': {
+                'white': {'user': {'name': 'player'}},
+                'black': {'user': {'name': 'enemy'}},
+            },
+            'winner': 'white',
+            'opening': {'name': "Queen's Pawn Game: Chigorin Variation"}
+        }
+    ]
 
 
 def test_get_username_of():
@@ -99,3 +143,18 @@ def test_not_played_for_black_side():
     }
     username = 'player_username'
     assert played_for(players, username) != 'black'
+
+
+def test_get_short_opening_name():
+    pawn_game = "Queen's Pawn Game: Accelerated London System"
+    assert get_short_opening_name(pawn_game) == "Queen's Pawn Game"
+    ware_defence = 'Ware Defense'
+    assert get_short_opening_name(ware_defence) == 'Ware Defense'
+
+
+def test_group_lost_games_by_opening(get_example_games):
+    lost_games = {
+        "Queen's Pawn Game": 2,
+        "Zukertort Opening: Black Mustang Defense": 1
+    }
+    assert group_lost_games_by_opening(get_example_games) == lost_games
