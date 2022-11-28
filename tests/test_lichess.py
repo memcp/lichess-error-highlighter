@@ -48,7 +48,8 @@ def game_example_data():
       "status": "mate",
       "variant": "standard",
       "winner": "white"
-  }
+   }
+
 
 def test_get_username_of():
     players = {
