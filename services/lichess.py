@@ -25,3 +25,34 @@ def played_for(players, username):
     if username == black_username:
         return 'black'
 
+
+def get_short_opening_name(opening):
+    """Поличить короткую версию названия дебюта"""
+    return opening.split(':')[0]
+
+
+def group_lost_games_by_opening(games, username, short=True):
+    """Формирует словарь из числа проигранных игроком игр, группируя их по дебюту, 
+       параметр `short` нужен для того чтобы разные варианты одного дебюта 
+       добавлялись в общую группу"""
+    openings_to_loses = {}
+    
+    for game in games:
+        opening = game.get('opening').get('name')
+        
+        if short:
+            opening = get_short_opening_name(opening)
+        
+        if not is_lose(game, username):
+            continue
+
+        if opening in openings_to_loses:
+            openings_to_loses[opening] += 1
+
+        if opening not in openings_to_loses:
+            openings_to_loses[opening] = 1
+
+    return openings_to_loses
+
+
+ 
