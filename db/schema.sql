@@ -12,13 +12,13 @@ CREATE TABLE opening(
   name TEXT,
   short_name TEXT,
 
-  UNIQUE(name, short_name)
+  UNIQUE(id, name, short_name)
 );
 
 CREATE TABLE game (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   lichess_id TEXT UNIQUE NOT NULL,
-  winner TEXT,
+  is_lose INT,
   player_id INTEGER NOT NULL,
   opening_id INTEGER NOT NULL,
 
