@@ -20,11 +20,11 @@ def insert_opening(conn, name, short_name):
     return opening_id
 
 
-def insert_game(conn, lichess_id, is_lose, player_id, opening_id):
+def insert_game(conn, lichess_id, is_lose, is_draw, player_id, opening_id):
     """Добавляет игру в таблицу"""
-    sql = """INSERT OR IGNORE INTO game(lichess_id, is_lose, player_id, opening_id)
-             VALUES (?, ?, ?, ?);"""
-    params = (lichess_id, is_lose, player_id, opening_id)
+    sql = """INSERT OR IGNORE INTO game(lichess_id, is_lose, is_draw, player_id, opening_id)
+             VALUES (?, ?, ?, ?, ?);"""
+    params = (lichess_id, is_lose, is_draw, player_id, opening_id)
     conn.execute(sql, params)
     conn.commit()
 
@@ -50,7 +50,8 @@ def win_games_grouped_by_opening(conn):
                count(opening.short_name) as wins_counter
              FROM 
                game INNER JOIN player ON game.player_id = player.id AND
-                                         game.is_lose = false
+                                         game.is_lose = false AND
+                                         game.is_draw = false
                     LEFT JOIN opening ON game.opening_id = opening.id
              GROUP BY
                opening.short_name;
