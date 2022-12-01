@@ -155,6 +155,6 @@ def test_get_short_opening_name():
 def test_group_lost_games_by_opening(get_example_games):
     lost_games = {
         "Queen's Pawn Game": 2,
-        "Zukertort Opening: Black Mustang Defense": 1
+        "Zukertort Opening": 1
     }
     assert group_lost_games_by_opening(get_example_games, 'player') == lost_games
