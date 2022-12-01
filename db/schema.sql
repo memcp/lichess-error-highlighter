@@ -19,6 +19,7 @@ CREATE TABLE game (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   lichess_id TEXT UNIQUE NOT NULL,
   is_lose INT,
+  is_draw INT,
   player_id INTEGER NOT NULL,
   opening_id INTEGER NOT NULL,
 

@@ -6,7 +6,7 @@ def get_username_of(players, side):
 
 
 def is_lose(game, username):
-    """Определяет проиграл ли игрок с `username` игра `game`"""
+    """Определяет проиграна ли игроком `username` игра `game`"""
     players = game.get('players')
     side = played_for(players, username)
     winner_side = game.get('winner')
@@ -27,24 +27,29 @@ def played_for(players, username):
 
 
 def get_short_opening_name(opening):
-    """Поличить короткую версию названия дебюта"""
+    """Получить короткую версию названия дебюта"""
     return opening.split(':')[0]
 
 
-def group_lost_games_by_opening(games, username, short=True):
+def group_lost_games_by_opening(games, short=True):
     """Формирует словарь из числа проигранных игроком игр, группируя их по дебюту, 
        параметр `short` нужен для того чтобы разные варианты одного дебюта 
        добавлялись в общую группу"""
     openings_to_loses = {}
+    # username = ...
     
     for game in games:
-        opening = game.get('opening').get('name')
-        
+        try:
+            opening = game.get('opening').get('name')
+        except AttributeError:
+            continue
+
         if short:
             opening = get_short_opening_name(opening)
         
-        if not is_lose(game, username):
-            continue
+        #if not is_lose(game, username):
+        #    continue
+        print(game['is_lose'])
 
         if opening in openings_to_loses:
             openings_to_loses[opening] += 1
