@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="menu">
+        <h1>Статистика дебютов</h1>
+        <a href="/">На главную</a>
+    </div>
+
+    <table>
+        <tr>
+            <th>Название дебюта</th>
+            <th>Процент побед</th>
+            <th>Всего игр</th>
+        </tr>
+        {% for opening in statistics %}
+        <tr>
+            <td>{{ opening[0] }}</td>
+            <td class="win-rate">{{ opening[1] }}</td>
+            <td>{{ opening[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

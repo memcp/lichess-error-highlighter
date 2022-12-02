@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if access_token is none %}
+        <h1>Enter your access token</h1>
+        <form action="" class="access-token-form">
+            <input type="text" name="access_token" id="access_token">
+            <input class="set-access-token" type="submit" value="Set Token">
+        </form>
+    {% else %}
+    <h1>Lichess Error Highlighter</h1>
+    {% endif %}
+    <script src="{{ url_for('static', filename='token.js') }}"></script>
+
+{% endblock content %}
