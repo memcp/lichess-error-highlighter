@@ -30,32 +30,3 @@ def get_short_opening_name(opening):
     """Получить короткую версию названия дебюта"""
     return opening.split(':')[0]
 
-
-def group_lost_games_by_opening(games, short=True):
-    """Формирует словарь из числа проигранных игроком игр, группируя их по дебюту, 
-       параметр `short` нужен для того чтобы разные варианты одного дебюта 
-       добавлялись в общую группу"""
-    openings_to_loses = {}
-    # username = ...
-    
-    for game in games:
-        try:
-            opening = game.get('opening').get('name')
-        except AttributeError:
-            continue
-
-        if short:
-            opening = get_short_opening_name(opening)
-        
-        #if not is_lose(game, username):
-        #    continue
-        print(game['is_lose'])
-
-        if opening in openings_to_loses:
-            openings_to_loses[opening] += 1
-
-        if opening not in openings_to_loses:
-            openings_to_loses[opening] = 1
-
-    return openings_to_loses
-

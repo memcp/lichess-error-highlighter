@@ -150,11 +150,3 @@ def test_get_short_opening_name():
     assert get_short_opening_name(pawn_game) == "Queen's Pawn Game"
     ware_defence = 'Ware Defense'
     assert get_short_opening_name(ware_defence) == 'Ware Defense'
-
-
-def test_group_lost_games_by_opening(get_example_games):
-    lost_games = {
-        "Queen's Pawn Game": 2,
-        "Zukertort Opening": 1
-    }
-    assert group_lost_games_by_opening(get_example_games, 'player') == lost_games
