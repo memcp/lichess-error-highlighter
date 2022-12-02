@@ -54,7 +54,9 @@ def win_games_grouped_by_opening(conn):
                                          game.is_draw = false
                     LEFT JOIN opening ON game.opening_id = opening.id
              GROUP BY
-               opening.short_name;
+               opening.short_name
+             ORDER BY
+               count(opening.short_name) DESC;
            """
     curr = conn.cursor()
     curr.execute(sql)
