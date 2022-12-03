@@ -30,7 +30,7 @@ def insert_game(conn, lichess_id, is_lose, is_draw, player_id, opening_id):
 
 
 def get_number_of_games(conn, opening_short_name=None):
-    """Получить общее количество сыграных игр или в конкретном дебюте"""
+    """Получить общее количество сыгранных игр или в конкретном дебюте"""
     sql = """SELECT 
                count(game.id) as number_of_games
              FROM 
