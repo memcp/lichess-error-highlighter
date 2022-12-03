@@ -5,7 +5,6 @@ from services.lichess import (
     is_lose,
     played_for,
     get_short_opening_name,
-    group_lost_games_by_opening,
 )
 
 
