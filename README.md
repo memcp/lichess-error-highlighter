@@ -6,6 +6,7 @@
 Для скачивания игр необходим создать токен: https://lichess.org/account/oauth/token/create
 
 ```
+python3 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
 flask --app listat init-db
