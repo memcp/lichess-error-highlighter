@@ -3,7 +3,7 @@
 
 ## Установка
 
-Для скачивания игр необходим создать токен: https://lichess.org/account/oauth/token/create
+Для скачивания игр необходимо создать токен: https://lichess.org/account/oauth/token/create
 
 ```
 python3 -m venv env
